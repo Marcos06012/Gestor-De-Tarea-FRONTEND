@@ -1,7 +1,7 @@
-### Gestor de Tareas-FRONTEND
+## Gestor de Tareas-FRONTEND
 Aplicación desarrollada con React.js para gestionar tareas personales. Permite registrarse, iniciar sesión, crear, editar, eliminar y marcar tareas como completadas, con autenticación mediante JWT.
 
-### Instalación
+---
 
 ### Requisitos previos
 - Node.js v18+
