@@ -118,6 +118,7 @@ export default function ListaDeTareas() {
             <label className="block dark:text-white mb-1 font-medium">Fecha Inicio</label>
             <input
               type="date"
+              required
               value={fechaInicio}
               onChange={(e) => setFechaInicio(e.target.value)}
               className="px-4 py-2 border rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 h-11"
@@ -128,6 +129,7 @@ export default function ListaDeTareas() {
             <label className="block dark:text-white mb-1 font-medium">Fecha Vencimiento</label>
             <input
               type="date"
+              required
               value={fechaVencimiento}
               onChange={(e) => setFechaVencimiento(e.target.value)}
               className="px-4 py-2 border rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 h-11"
