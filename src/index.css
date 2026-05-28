@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Quitar márgenes y padding del navegador */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Asegurar que el contenedor raíz ocupe toda la altura */
+#root {
+  height: 100%;
+}
