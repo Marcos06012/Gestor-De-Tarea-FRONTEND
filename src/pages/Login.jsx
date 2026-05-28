@@ -1,6 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// 1. IMPORTA TU INSTANCIA PERSONALIZADA (Asegúrate de poner la ruta correcta hacia tu archivo API.js)
+import API from "../api/API"; // Cambia la ruta según dónde guardaste el archivo API.js
 
 export default function Login() {
   const navigate = useNavigate();
@@ -11,33 +12,32 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3001/login", {
+      // 2. USA "API.post" en lugar de "axios.post" y pon solo "/login"
+      // Al usar API, automáticamente se le pegará la URL de Render "https://gestor-tareas-backend.onrender.com/login"
+      const response = await API.post("/login", {
         email,
         password,
       });
 
       // Si el login es exitoso guardamos el token
-        const { token, message, username, userEmail} = response.data;
-        console.log(username, userEmail);
-        if (token) {
-          // Guardar el token en localStorage
-          localStorage.setItem("token", token);
-          // Guardo localmente el email del usuario y el usuario
-          localStorage.setItem("userEmail", userEmail);
-          localStorage.setItem("userName" , username);
-          console.log("Respuesta del servidor:", response.data);
-          alert("Inicio de sesión exitoso");
-          // Enviamos al usuario a la pagina Lista de Tareas
-          navigate("/tareas", { state: { userEmail: username } });
-        } else {
-          console.error('Login no devolvió token:', response.data);
-          alert(response.data.message || response.data.error || 'Error en el inicio de sesión');
-        }
+      const { token, message, username, userEmail} = response.data;
+      console.log(username, userEmail);
+      if (token) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("userEmail", userEmail);
+        localStorage.setItem("userName" , username);
+        console.log("Respuesta del servidor:", response.data);
+        alert("Inicio de sesión exitoso");
+        navigate("/tareas", { state: { userEmail: username } });
+      } else {
+        console.error('Login no devolvió token:', response.data);
+        alert(response.data.message || response.data.error || 'Error en el inicio de sesión');
+      }
 
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       if (error.response) {
-        alert("Error: " + error.response.data.message || "Error en el inicio de sesión");
+        alert("Error: " + (error.response.data.message || "Error en el inicio de sesión"));
       } else {
         alert("Error en el inicio de sesión");
       }
