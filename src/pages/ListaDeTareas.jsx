@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import api from "../pages/api/AxiosConfig";
+import API from "./api/API";
 
 export default function ListaDeTareas() {
   const location = useLocation();
@@ -21,7 +21,7 @@ export default function ListaDeTareas() {
   //GET TASKS para cargar tareas al inicio
   const obtenerTareas = async () => {
     try {
-      const response = await api.get("/tasks");
+      const response = await API.get("/tasks");
       setTareas(response.data);
     } catch (error) {
       console.error("Error al obtener tareas:", error);
@@ -38,7 +38,7 @@ export default function ListaDeTareas() {
     e.preventDefault();
 
     try {
-      await api.post("/tasks", {
+      await API.post("/tasks", {
         title: tareaNueva,
         description: description,
         fechaInicio: fechaInicio,
@@ -61,7 +61,7 @@ export default function ListaDeTareas() {
   // DELETE TASKS para eliminar tarea por id
   const eliminarTarea = async (id) => {
     try {
-      await api.delete(`/tasks/${id}`);
+      await API.delete(`/tasks/${id}`);
       setTareas(tareas.filter((t) => t.id !== id));
     } catch (error) {
       console.error("Error al eliminar tarea:", error);
@@ -73,7 +73,7 @@ export default function ListaDeTareas() {
   const actualizarTarea = async (tarea) => {
     try {
       const updated = { ...tarea, completed: !tarea.completed };
-      await api.put(`/tasks/${tarea.id}`, updated);
+      await API.put(`/tasks/${tarea.id}`, updated);
       setTareas(tareas.map((t) => (t.id === tarea.id ? updated : t)));
     } catch (error) {
       console.error("Error al actualizar tarea:", error);

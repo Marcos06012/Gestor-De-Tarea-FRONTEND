@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// 1. IMPORTA TU INSTANCIA PERSONALIZADA (Asegúrate de poner la ruta correcta hacia tu archivo API.js)
-import API from "../api/API"; // Cambia la ruta según dónde guardaste el archivo API.js
+import API from "./api/API";
 
 export default function Login() {
   const navigate = useNavigate();

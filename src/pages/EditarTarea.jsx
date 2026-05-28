@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import api from "../pages/api/AxiosConfig";
+import API from "./api/API";
 
 
 
@@ -35,7 +35,7 @@ export default function EditarTarea() {
   const GuardarNuevaEdicion = async () => {
     try {
       const updated = { title: title, description: description, fechaInicio: fechaInicio, fechaVencimiento: fechaVencimiento };
-      await api.put(`/tasks/${tarea.id}`, updated);
+      await API.put(`/tasks/${tarea.id}`, updated);
 
     } catch (error) {
       console.error("Error al actualizar tarea:", error);

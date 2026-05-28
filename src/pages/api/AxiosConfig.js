@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "https://gestordetareasbackend.onrender.com",
+    baseURL: "https://gestor-tareas-backend.onrender.com",
 });
 
 //Recibidor de la API para agregar el token automaticamente
