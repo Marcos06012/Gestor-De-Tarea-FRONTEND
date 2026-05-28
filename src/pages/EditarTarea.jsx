@@ -34,14 +34,13 @@ export default function EditarTarea() {
 
   const GuardarNuevaEdicion = async () => {
     try {
-      const updated = { title: title, description: description, fechaInicio: fechaInicio, fechaVencimiento: fechaVencimiento };
+      const updated = { title, description, fechaInicio, fechaVencimiento };
       await API.put(`/tasks/${tarea.id}`, updated);
-
+      navigate("/tareas", { state: { reload: true } });
     } catch (error) {
       console.error("Error al actualizar tarea:", error);
     }
-  };
-
+};
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-900 to-blue-400 p-8">
       <div className="dark:bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-lg">

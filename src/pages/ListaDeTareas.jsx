@@ -30,7 +30,7 @@ export default function ListaDeTareas() {
 
   useEffect(() => {
     obtenerTareas();
-  }, []);
+}, [location.state?.reload]);
 
   // POST TASKS para crear nueva tarea
   const crearTareas = async (e) => {
